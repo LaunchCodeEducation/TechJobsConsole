@@ -116,9 +116,46 @@ namespace TechJobsConsole
             return choiceKeys[choiceIdx];
         }
 
-        private static void PrintJobs(List<Dictionary<string, string>> someJobs)
+        private static string PrintJobs(List<Dictionary<string, string>> someJobs)
+            
         {
-            Console.WriteLine("printJobs is not implemented yet");
-        }
+            int choiceIdx;
+            bool isValidChoice = false;
+            string[] choiceKeys = new string[someJobs.Count];
+
+            
+            foreach (KeyValuePair<string, string> choice in someJobs)
+            {
+                {
+                    Console.WriteLine("Key = {0}, Value = {1}",
+                        choice.Key, choice.Value);
+                }
+            }
+
+            do
+            {
+              
+
+                for (int j = 0; j < choiceKeys.Length; j++)
+                {
+                }
+
+                string input = Console.ReadLine();
+                choiceIdx = int.Parse(input);
+
+                if (choiceIdx < 0 || choiceIdx >= choiceKeys.Length)
+                {
+                    Console.WriteLine("Invalid choices.");
+                }
+                else
+                {
+                    isValidChoice = true;
+                }
+
+            } while (!isValidChoice);
+
+            return choiceKeys[choiceIdx];
+        
+    }
     }
 }
