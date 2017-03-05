@@ -116,22 +116,27 @@ namespace TechJobsConsole
             return choiceKeys[choiceIdx];
         }
 
-        private static string PrintJobs(List<Dictionary<string, string>> someJobs)
+        private static void PrintJobs(List<Dictionary<string, string>> someJobs)
+        
                     
         {
-
+          
+            //Dictionary<string, string> jobs = new Dictionary<string, string>();
             foreach (Dictionary<string, string> item in someJobs)
 
             {
-                string jobsSome;
+                
                 foreach (KeyValuePair<string, string> choice in item)
                 {
-
-                    jobsSome = (item.Keys + " : " + item.Values);
-                 
+                    Console.WriteLine(item.Keys + " : " + item.Values);
                 }
-                jobsSome = item.Keys + " : " + item.Values;
+
+                
+                  
+
             }
+           
+        
            
         }
     }
