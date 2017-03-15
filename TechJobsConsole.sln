@@ -3,30 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B0E290C0-AB84-4024-B1D7-79F1B54E3B42}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5BA058F2-5811-4E60-B81A-531C7125F721}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TechJobsConsole", "src\TechJobsConsole\TechJobsConsole.xproj", "{56A0A280-DB0E-442D-A1CE-2D8C15EEB4D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechJobsConsole", "TechJobsConsole.csproj", "{499786B7-490C-407D-964D-F4FD507ABA13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{56A0A280-DB0E-442D-A1CE-2D8C15EEB4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56A0A280-DB0E-442D-A1CE-2D8C15EEB4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56A0A280-DB0E-442D-A1CE-2D8C15EEB4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56A0A280-DB0E-442D-A1CE-2D8C15EEB4D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{499786B7-490C-407D-964D-F4FD507ABA13}.Debug|x86.ActiveCfg = Debug|x86
+		{499786B7-490C-407D-964D-F4FD507ABA13}.Debug|x86.Build.0 = Debug|x86
+		{499786B7-490C-407D-964D-F4FD507ABA13}.Release|x86.ActiveCfg = Release|x86
+		{499786B7-490C-407D-964D-F4FD507ABA13}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{56A0A280-DB0E-442D-A1CE-2D8C15EEB4D7} = {B0E290C0-AB84-4024-B1D7-79F1B54E3B42}
 	EndGlobalSection
 EndGlobal
