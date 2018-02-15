@@ -48,8 +48,8 @@ namespace TechJobsConsole
             foreach (Dictionary<string, string> row in AllJobs)
             {
                 string aValue = row[column];
-
-                if (aValue.Contains(value))
+                bool valueContainsValue = aValue.IndexOf(value, System.StringComparison.OrdinalIgnoreCase) >= 0;
+                if (valueContainsValue == true)
                 {
                     jobs.Add(row);
                 }
@@ -84,7 +84,7 @@ namespace TechJobsConsole
                 }
             }
 
-            string[] headers = rows[0];
+            string[] headers = rows[0]; // whats this doing to the strings???
             rows.Remove(headers);
 
             // Parse each row array into a more friendly Dictionary
@@ -137,6 +137,53 @@ namespace TechJobsConsole
             valueBuilder.Clear();
 
             return rowValues.ToArray();
+
+        }
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+            
+            LoadData();
+
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            List<string> columnList = new List<string>();
+            columnList.Add("name");
+            columnList.Add("employer");
+            columnList.Add("location");
+            columnList.Add("position type");
+            columnList.Add("core competency");
+
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                int x = 0;
+                string aValue;
+
+                aValue = row[columnList[x]];
+
+                bool contains = aValue.IndexOf(value, System.StringComparison.OrdinalIgnoreCase) >= 0;
+
+
+                if (contains == true)
+                {
+                    jobs.Add(row);
+                }
+
+                foreach (KeyValuePair<string, string> entry in row) 
+                {
+                    bool keyContainsValue = entry.Key.IndexOf(value, System.StringComparison.OrdinalIgnoreCase) >= 0;
+                    if (keyContainsValue == true) 
+                    {
+                        jobs.Add(row);
+                    }
+                    bool valueContainsValue = entry.Value.IndexOf(value, System.StringComparison.OrdinalIgnoreCase) >= 0;
+                    if (valueContainsValue == true)
+                    {
+                        jobs.Add(row);
+                    }
+                }
+                x += 1;
+            }
+
+            return jobs;
         }
     }
 }

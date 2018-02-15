@@ -26,7 +26,7 @@ namespace TechJobsConsole
 
             // Allow user to search/list until they manually quit with ctrl+c
             while (true)
-            {
+            {// ////////////////// where is initiating first user prompt for entry???
 
                 string actionChoice = GetUserSelection("View Jobs", actionChoices);
 
@@ -61,14 +61,31 @@ namespace TechJobsConsole
                     List<Dictionary<string, string>> searchResults;
 
                     // Fetch results
+                    
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
+                        //Console.WriteLine("Search all fields not yet implemented.But almost?");
+                        searchResults = JobData.FindByValue(searchTerm);
+                        if (searchResults.Count > 0)
+                        {
+                            PrintJobs(searchResults);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Results Not Found. Please search for something else.");
+                        }
                     }
                     else
                     {
                         searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
-                        PrintJobs(searchResults);
+                        if (searchResults.Count > 0)
+                        {
+                            PrintJobs(searchResults);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Results Not Found. Please search for something else.");
+                        }
                     }
                 }
             }
@@ -118,7 +135,21 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("printJobs is not implemented yet");
+          
+                for (int j = 0; j < someJobs.Count; j++)
+                {
+                    List<string> keyList = new List<string>(someJobs[j].Keys);
+                    List<string> valueList = new List<string>(someJobs[j].Values);
+                    Console.WriteLine("*****");
+                    for (int i = 0; i < keyList.Count; i++)
+                    {
+                    
+                        Console.WriteLine(keyList[i] + ": " + valueList[i]);
+                    
+                    }
+                    Console.WriteLine("*****\n"); //There must be a better way of doing this...
+            }
+          
         }
     }
 }
