@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Linq;
 
 namespace TechJobsConsole
 {
@@ -13,7 +14,7 @@ namespace TechJobsConsole
         public static List<Dictionary<string, string>> FindAll()
         {
             LoadData();
-            return AllJobs;
+            return AllJobs.ConvertAll(str => new Dictionary<string, string>());
         }
 
         /*
@@ -35,6 +36,12 @@ namespace TechJobsConsole
                     values.Add(aValue);
                 }
             }
+            if (values.Any())
+            {
+                values.Sort();
+            }
+
+           
             return values;
         }
 
@@ -55,6 +62,36 @@ namespace TechJobsConsole
                 }
             }
 
+            return jobs;
+        }
+
+        public static List<Dictionary<string,string>> FindByValue(string term)
+        {
+            // load data, if not already loaded
+
+            LoadData();
+            //output list of dictionaries
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+            //put search term in upper case
+            string termUpper = term.ToUpper();
+
+            foreach (Dictionary<string, string> listing in AllJobs)
+            {
+                //make upper case copy of dictionary AllJobs
+                Dictionary<string, string> listingUpper = new Dictionary<string, string>();
+                foreach(string key in listing.Keys)
+                {
+                    listingUpper.Add(key.ToUpper(), listing[key].ToUpper());
+                }
+
+                //check if dictionary (job listing in caps) contains search term, then add not capitalized one
+                var finds = from entry in listingUpper where entry.Value.Contains(termUpper) select listingUpper.Keys;
+                if (finds.Count() != 0)
+                {
+                    //if it does, add to list of dictionaries jobs and return to break this loop iteration
+                    jobs.Add(listing);
+                }
+            }
             return jobs;
         }
 
