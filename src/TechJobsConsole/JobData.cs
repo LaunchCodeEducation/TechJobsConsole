@@ -58,6 +58,27 @@ namespace TechJobsConsole
             return jobs;
         }
 
+
+        public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+            // load data, if not already loaded
+            LoadData();
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> row in AllJobs)
+            {
+                foreach (KeyValuePair<string, string> item in row)
+                {
+
+                    if (item.Value.ToLower().Contains(value.ToLower()) && !jobs.Contains(row))
+                    {
+                        jobs.Add(row);
+                    }
+                }
+            }
+            return jobs;
+        }
+
         /*
          * Load and parse data from job_data.csv
          */
@@ -71,7 +92,7 @@ namespace TechJobsConsole
 
             List<string[]> rows = new List<string[]>();
 
-            using (StreamReader reader = File.OpenText("job_data.csv"))
+            using (StreamReader reader = File.OpenText(@"C:\Users\PC\lc101\TechJobsConsole\src\TechJobsConsole\job_data.csv"))
             {
                 while (reader.Peek() >= 0)
                 {
