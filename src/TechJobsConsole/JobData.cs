@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 
 namespace TechJobsConsole
-{
+{ 
     class JobData
     {
         static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
@@ -15,7 +15,7 @@ namespace TechJobsConsole
             LoadData();
             return AllJobs;
         }
-
+		 
         /*
          * Returns a list of all values contained in a given column,
          * without duplicates. 
@@ -37,6 +37,8 @@ namespace TechJobsConsole
             }
             return values;
         }
+
+//		public static FindByValue();
 
         public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
         {

@@ -64,7 +64,9 @@ namespace TechJobsConsole
                     if (columnChoice.Equals("all"))
                     {
                         Console.WriteLine("Search all fields not yet implemented.");
-                    }
+//						searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+	//					PrintJobs(searchResults);
+					}
                     else
                     {
                         searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
@@ -118,9 +120,20 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
+			Console.WriteLine("*** All jobpositions available ***");
+			Console.WriteLine();
+			foreach (Dictionary<string, string> localdictionary in someJobs)
+			{
+				foreach (KeyValuePair<string, string> item in localdictionary)
+				{
+					Console.WriteLine(item.Key + ": " + item.Value);
+				}
+				Console.WriteLine();
+				Console.WriteLine("*****");
+				
+			}
 
-            Console.WriteLine("printJobs is not implemented yet");
 
-        }
+		}
     }
 }
