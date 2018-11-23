@@ -2,43 +2,73 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System;
 
 namespace TechJobsConsole
-{ 
-    class JobData
-    {
-        static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
-        static bool IsDataLoaded = false;
+{
+	class JobData
+	{
+		static List<Dictionary<string, string>> AllJobs = new List<Dictionary<string, string>>();
+		static bool IsDataLoaded = false;
 
-        public static List<Dictionary<string, string>> FindAll()
-        {
-            LoadData();
-            return AllJobs;
-        }
-		 
-        /*
+		public static List<Dictionary<string, string>> FindAll()
+		{
+			LoadData();
+			return AllJobs;
+		}
+
+		/*
          * Returns a list of all values contained in a given column,
          * without duplicates. 
          */
-        public static List<string>	FindAll(string column)
-        {
-            LoadData();
+		public static List<string> FindAll(string column)
+		{
+			LoadData();
 
-            List<string> values = new List<string>();
+			List<string> values = new List<string>();
 
-            foreach (Dictionary<string, string> job in AllJobs)
-            {
-                string aValue = job[column];
+			foreach (Dictionary<string, string> job in AllJobs)
+			{
+				string aValue = job[column];
 
-                if (!values.Contains(aValue))
-                {
-                    values.Add(aValue);
-                }
-            }
-            return values;
-        }
+				if (!values.Contains(aValue))
+				{
+					values.Add(aValue);
+				}
+			}
+			return values;
+		}
 
-//		public static FindByValue();
+		public static List<Dictionary<string, string>> FindByValue(string value)
+		{
+			LoadData();
+			Console.WriteLine("chk1");
+			bool addtolist = false;
+			List<Dictionary<string, string>> jobsbyvalueonly = new List<Dictionary<string, string>>();
+
+			foreach (Dictionary<string, string> job in AllJobs)
+			{
+				Console.WriteLine("hello");
+				Console.WriteLine(value);
+				foreach (KeyValuePair<string, string> item in job)
+				{
+					Console.WriteLine(item.Value);
+					if ((item.Value.Contains(value)))
+					{
+						addtolist = true;
+						Console.WriteLine("chk2");
+					}
+				}
+				if (addtolist == true)
+				{
+					jobsbyvalueonly.Add(job);
+					addtolist = false;
+				}
+			}
+
+			return jobsbyvalueonly;
+		}
+
 
         public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
         {
