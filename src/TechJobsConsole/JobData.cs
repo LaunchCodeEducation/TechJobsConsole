@@ -42,21 +42,21 @@ namespace TechJobsConsole
 		public static List<Dictionary<string, string>> FindByValue(string value)
 		{
 			LoadData();
-			Console.WriteLine("chk1");
 			bool addtolist = false;
+			
 			List<Dictionary<string, string>> jobsbyvalueonly = new List<Dictionary<string, string>>();
 
 			foreach (Dictionary<string, string> job in AllJobs)
 			{
-				Console.WriteLine("hello");
 				Console.WriteLine(value);
 				foreach (KeyValuePair<string, string> item in job)
 				{
-					Console.WriteLine(item.Value);
-					if ((item.Value.Contains(value)))
+					string comparestring = item.Value.ToUpper();
+					string valuestring = value.ToUpper();
+
+					if (comparestring.Contains(valuestring))
 					{
 						addtolist = true;
-						Console.WriteLine("chk2");
 					}
 				}
 				if (addtolist == true)
