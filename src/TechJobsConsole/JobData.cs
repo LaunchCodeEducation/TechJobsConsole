@@ -48,7 +48,6 @@ namespace TechJobsConsole
 
 			foreach (Dictionary<string, string> job in AllJobs)
 			{
-				Console.WriteLine(value);
 				foreach (KeyValuePair<string, string> item in job)
 				{
 					string comparestring = item.Value.ToUpper();
